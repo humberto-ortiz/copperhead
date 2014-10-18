@@ -1,0 +1,9 @@
+2014/10/17 - HOZ
+
+Build julia on ROCKS:
+
+make -j 4 OPENBLAS_TARGET_ARCH=NEHALEM OPENBLAS_NO_AVX2=1
+
+otherwise you get no such instruction errors.
+
+test.jl generates a random sequence.
