@@ -41,6 +41,18 @@ srand(0)
 myseq = randseq(1000)
 #printseq(myseq, "myseq")
 
-reads = makereads(myseq, 15, 500)
+readcount = 500
+readlen = 15
+reads = makereads(myseq, readlen, readcount)
 
-map((seq) -> begin printseq(seq); println() end, reads[1:10])
+# insert some errors into some of the reads
+percenterror = 3  # error rate as an integer percentage
+errorcount = div(percenterror * readcount,  100)
+
+for i in readcount-errorcount:readcount
+  reads[i][div(readlen, 2)] = 'x'
+end
+
+#map((seq) -> begin printseq(seq); println() end, reads[1:10])
+
+map((seq) -> begin printseq(seq); println() end, reads[end-10:end])
