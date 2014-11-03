@@ -10,10 +10,18 @@ test.jl generates a random sequence.
 
 2014/10/17 - HOZ
 
-LightTable + Juno is a nice editor for Julia. Can evaluate expressions in the editor and annotate the output.
+LightTable + Juno is a nice editor for Julia. Can evaluate expressions in the
+editor and annotate the output.
 
 Had to remove ~/.julia and reinstall Julia 0.3.1 to get IJulia working.
 
 ipython notebook --profile=julia
 
 now works too. See copperhead-test.ipynb.
+
+2014/11/03 - HOZ
+
+graph-test and keyvertex-test are simple examples of graph manipulation I
+grabbed from the internet.
+
+I think I have to build a Dict from kmers to vertices to store vertices.

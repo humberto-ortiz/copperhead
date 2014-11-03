@@ -33,6 +33,42 @@ function makereads(seq, readlen, n)
   map((i) -> seq[i:i+readlen-1], starts)
 end
 
+# make an k-mer graph from the reads
+using Graphs
+
+# see https://stackoverflow.com/questions/24578430/changing-vertices-value-with-graphs-jl
+# for example julia Graphs with non integer vertices.
+function empty_graph()
+  va::Array{Graphs.ExVertex,1} = {}
+  ea::Array{Graphs.ExEdge{Graphs.ExVertex},1} = {}
+  G = Graphs.graph(va,ea)
+end
+
+function add_label!(G,s::ASCIIString)
+  v = Graphs.ExVertex(Graphs.num_vertices(G) + 1,s)
+  Graphs.add_vertex!(G,v)
+  v
+end
+
+function add_connection!(G,from::Int,to::Int)
+  va = Graphs.vertices(G)
+  e = Graphs.ExEdge(Graphs.num_edges(G) + 1,va[from],va[to])
+  Graphs.add_edge!(G,e)
+  e
+end
+
+function kmergraph(reads)
+  g = empty_graph()
+  k = 9
+  for read in reads
+    for i in 1:length(read)-k
+      kmer_a = read[i:i+k-1]
+      kmer_b = read[i+1:i+k]
+    end
+  end
+  g
+end
+
 # Main function
 
 # Initialize the random number generator to always make the same sequence
@@ -55,4 +91,9 @@ end
 
 #map((seq) -> begin printseq(seq); println() end, reads[1:10])
 
-map((seq) -> begin printseq(seq); println() end, reads[end-10:end])
+map((seq) -> begin printseq(seq); println() end, reads[end-20:end])
+
+g = kmergraph(reads)
+
+add_label!(g, "tagttgxg")
+g
