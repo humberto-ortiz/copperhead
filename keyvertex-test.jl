@@ -1,3 +1,5 @@
+# Short demo of graphs from julia-users Google group see:
+# https://groups.google.com/d/msg/julia-users/yJzhhOEHJ6I/A1Hchwz3EXUJ
 using Graphs
 
 # Create new graph
